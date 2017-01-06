@@ -1,1 +1,2 @@
-include ':app'
+include ':RedditApp'
+project(':RedditApp').projectDir = new File('app')

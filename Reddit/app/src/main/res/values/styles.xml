@@ -8,4 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="TextAppearance.FontPath" parent="android:TextAppearance">
+        <item name="fontPath">fonts/Roboto-Italic.ttf</item>
+    </style>
+
+    <style name="SimpleStyle">
+        <item name="fontPath">fonts/Roboto-Italic.ttf</item>
+    </style>
+
 </resources>

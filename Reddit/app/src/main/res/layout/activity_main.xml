@@ -1,19 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.thirdmono.reddit.MainActivity">
+    android:orientation="vertical"
+    tools:context="com.thirdmono.reddit.presentation.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="@+id/activity_main"
-        app:layout_constraintLeft_toLeftOf="@+id/activity_main"
-        app:layout_constraintRight_toRightOf="@+id/activity_main"
-        app:layout_constraintTop_toTopOf="@+id/activity_main" />
+        android:textAppearance="@style/TextAppearance.FontPath"
+        android:textColor="@color/accent" />
 
-</android.support.constraint.ConstraintLayout>
+
+    <TextView
+        fontPath="fonts/Roboto-Medium.ttf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World2!"
+        android:textColor="@color/primary" />
+
+    <TextView
+        style="@style/SimpleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World3!"
+        android:textColor="@color/primary_text" />
+
+</LinearLayout>

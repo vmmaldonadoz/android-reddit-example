@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 25
@@ -19,12 +20,74 @@ android {
     }
 }
 
+ext {
+    supportLibraryVersion = '25.1.0'
+    multidexLibraryVersion = '1.0.1'
+    expressoCoreVersion = '2.2.2'
+    jUnitVersion = '4.12'
+    reboundVersion = '0.3.8'
+    butterKnifeVersion = '8.4.0'
+    leakCanaryVersion = '1.5'
+    crashlyticsVersion = '2.6.5'
+    timberVersion = '4.3.1'
+    retrofitVersion = '2.1.0'
+    okhttpVersion = '3.4.1'
+    gsonVersion = '2.7'
+    daggerVersion = '2.7'
+    picassoVersion = '2.5.2'
+    javaAnnotationVersion = '1.0'
+    calligraphyVersion = '2.2.0'
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    /* Testing */
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta1'
     testCompile 'junit:junit:4.12'
+
+    /* Android Support libraries */
+    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+    compile "com.android.support:support-v4:$supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$supportLibraryVersion"
+    compile "com.android.support:cardview-v7:$supportLibraryVersion"
+    compile "com.android.support:design:$supportLibraryVersion"
+
+    /* Multidex */
+    compile "com.android.support:multidex:$multidexLibraryVersion"
+
+    /* Logger - Timber */
+    compile "com.jakewharton.timber:timber:$timberVersion"
+
+    /* View binding - Butterknife */
+    compile "com.jakewharton:butterknife:$butterKnifeVersion"
+    apt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
+
+    /* Memory leak detection - LeakCanary */
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+
+    /* REST Interactions - Retrofit */
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
+
+    /* JSON Parsing - Gson */
+    compile "com.google.code.gson:gson:$gsonVersion"
+    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    /* Dependency Injection - Dagger */
+    apt "com.google.dagger:dagger-compiler:$daggerVersion"
+    compile "com.google.dagger:dagger:$daggerVersion"
+    provided "javax.annotation:jsr250-api:$javaAnnotationVersion"
+
+    /* Image loader - Picasso */
+    compile "com.squareup.picasso:picasso:$picassoVersion"
+
+    /* Calligraphy */
+    compile "uk.co.chrisjenx:calligraphy:$calligraphyVersion"
+
 }
