@@ -57,8 +57,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".presentation.list.view.ListActivity"
-            android:theme="@style/AppTheme.NoActionBar">>
-
+            android:theme="@style/AppTheme.NoActionBar">
+            >
         </activity>
         <activity
             android:name=".presentation.splash.view.SplashActivity"
@@ -71,10 +71,13 @@
         </activity>
         <activity
             android:name=".presentation.details.DetailsActivity"
+            android:label="@string/title_activity_details"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="55a0add5bf236764d7704355d82c5a04374fc48f" />
+
     </application>
 
 </manifest>

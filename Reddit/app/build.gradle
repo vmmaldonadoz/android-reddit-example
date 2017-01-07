@@ -50,6 +50,7 @@ ext {
     gsonVersion = '2.7'
     daggerVersion = '2.7'
     picassoVersion = '2.5.2'
+    circleImageViewVersion = '2.1.0'
     javaAnnotationVersion = '1.0'
     calligraphyVersion = '2.2.0'
 }
@@ -101,6 +102,9 @@ dependencies {
 
     /* Image loader - Picasso */
     compile "com.squareup.picasso:picasso:$picassoVersion"
+
+    /* Circle ImageView - CircleImageView */
+    compile "de.hdodenhof:circleimageview:$circleImageViewVersion"
 
     /* Calligraphy */
     compile "uk.co.chrisjenx:calligraphy:$calligraphyVersion"

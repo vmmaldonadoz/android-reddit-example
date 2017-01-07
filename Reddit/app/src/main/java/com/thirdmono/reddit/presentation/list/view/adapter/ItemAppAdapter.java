@@ -12,6 +12,7 @@ import com.squareup.picasso.Picasso;
 import com.thirdmono.reddit.R;
 import com.thirdmono.reddit.data.entity.SubReddit;
 import com.thirdmono.reddit.data.entity.Thing;
+import com.thirdmono.reddit.domain.utils.CircleTransformation;
 
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class ItemAppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolderItem(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_simple_reddit, parent, false));
+        return new ViewHolderItem(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_subreddit, parent, false));
     }
 
     @Override
@@ -57,11 +58,12 @@ public class ItemAppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (image != null && !image.trim().isEmpty()) {
             Picasso.with(context)
                     .load(image)
+                    .transform(new CircleTransformation())
                     .into(viewHolderBody.itemIcon);
         }
 
-        viewHolderBody.itemTitle.setText(data.getCreated() + " && " + data.getId() + " && " + data.getName());
-        viewHolderBody.itemArtist.setText(data.getDisplayName());
+        viewHolderBody.itemTitle.setText(data.getUrl()+" : "+data.getDisplayName());
+        viewHolderBody.itemDescription.setText(data.getPublicDescription());
         viewHolderBody.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +82,6 @@ public class ItemAppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         notifyDataSetChanged();
     }
 
-    // Add a list of items
     public void addAll(List<Thing> list) {
         items.addAll(list);
         notifyDataSetChanged();
@@ -93,10 +94,10 @@ public class ItemAppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     static class ViewHolderItem extends RecyclerView.ViewHolder {
         @BindView(R.id.item_icon)
         ImageView itemIcon;
-        @BindView(R.id.item_title)
+        @BindView(R.id.item_name)
         TextView itemTitle;
-        @BindView(R.id.item_artist)
-        TextView itemArtist;
+        @BindView(R.id.item_description)
+        TextView itemDescription;
 
         ViewHolderItem(View v) {
             super(v);

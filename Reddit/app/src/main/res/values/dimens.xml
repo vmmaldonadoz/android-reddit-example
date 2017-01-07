@@ -1,5 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="app_bar_height">240dp</dimen>
+
     <dimen name="offline_message_height">36dp</dimen>
     <dimen name="offline_message_text_size">16sp</dimen>
 
@@ -16,5 +18,8 @@
 
     <dimen name="free_text_size">12sp</dimen>
     <dimen name="nsfw_text_margin">4dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="subreddit_name_size" >16sp</dimen>
+    <dimen name="subreddit_subscribers_size">12sp</dimen>
 
 </resources>

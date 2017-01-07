@@ -101,6 +101,7 @@ public class ListActivity extends BaseActivity implements ListContract.View, Ite
 
     private void setupToolbar() {
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.primary_text));
         toolbar.setTitle(getTitle());
     }
 
@@ -168,11 +169,13 @@ public class ListActivity extends BaseActivity implements ListContract.View, Ite
 
     @Override
     public void showErrorDuringRequestMessage() {
+        hideSwipeRefreshing();
         showRetrySnackbar(R.string.error_loading);
     }
 
     @Override
     public void showEmptyResponseMessage() {
+        hideSwipeRefreshing();
         showRetrySnackbar(R.string.empty_response);
     }
 
