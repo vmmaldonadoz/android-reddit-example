@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.thirdmono.reddit.presentation.MainActivity">
+    tools:context="com.thirdmono.reddit.presentation.list.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
