@@ -1,12 +1,15 @@
 package com.thirdmono.reddit.data.api;
 
 
-import com.thirdmono.reddit.data.entity.Listing;
+import com.thirdmono.reddit.data.entity.Reddit;
 import com.thirdmono.reddit.domain.utils.Constants;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
+import retrofit2.http.Query;
+
+import static com.thirdmono.reddit.domain.utils.Constants.QUERY_LIMIT;
+import static com.thirdmono.reddit.domain.utils.Constants.QUERY_PAGINATE_AFTER;
 
 /**
  * API interface for retrieving the most recent Subreddits in Reddit.
@@ -16,7 +19,9 @@ import retrofit2.http.Path;
  */
 public interface RedditsService {
 
-    @GET(Constants.QUERY)
-    Call<Listing> getPaginatedReddits(@Path(Constants.NEXT_PAGE_KEY) String nextPage);
+    @GET(Constants.QUERY_REDDITS)
+    Call<Reddit> getPaginatedReddits(
+            @Query(QUERY_PAGINATE_AFTER) String nextPage,
+            @Query(QUERY_LIMIT) int limit);
 
 }

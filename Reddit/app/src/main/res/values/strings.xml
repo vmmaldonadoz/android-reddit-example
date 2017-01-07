@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Read it!</string>
-    <string name="title_activity_detail">DetailActivity</string>
+
+    <string name="offline_message">No internet connection</string>
+
+    <string name="error_loading">Error loading the list.</string>
+    <string name="empty_response">Empty list response.</string>
+    <string name="retry">Retry</string>
+
+    <string name="free_text">Free</string>
+    <string name="placeholder_artist">Artist</string>
+    <string name="placeholder_title">Title</string>
+    <string name="item_icon_description">Reddit image</string>
+
 </resources>

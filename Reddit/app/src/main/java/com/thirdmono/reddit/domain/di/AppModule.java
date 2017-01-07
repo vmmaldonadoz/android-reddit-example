@@ -7,6 +7,8 @@ import com.thirdmono.reddit.RedditApplication;
 import com.thirdmono.reddit.data.api.RedditsService;
 import com.thirdmono.reddit.domain.utils.Constants;
 import com.thirdmono.reddit.domain.utils.Utils;
+import com.thirdmono.reddit.presentation.list.ListContract;
+import com.thirdmono.reddit.presentation.list.presenter.ListPresenter;
 import com.thirdmono.reddit.presentation.splash.SplashContract;
 import com.thirdmono.reddit.presentation.splash.presenter.SplashPresenter;
 
@@ -136,11 +138,11 @@ public class AppModule {
     public SplashContract.Presenter provideSplashPresenter() {
         return new SplashPresenter();
     }
-//
-//    @Provides
-//    public AppListContract.Presenter provideAppListPresenter(FreeAppsService appsService) {
-//        return new AppListPresenter(appsService);
-//    }
+
+    @Provides
+    public ListContract.Presenter provideAppListPresenter(RedditsService redditsService) {
+        return new ListPresenter(redditsService);
+    }
 //
 //    @Provides
 //    public DetailsContract.Presenter provideDetailsPresenter() {

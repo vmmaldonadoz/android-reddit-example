@@ -1,43 +1,54 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" pparent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/accent</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
 
-    <style name="NoActionBarTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/accent</item>
-        <item name="colorControlNormal">@color/accent</item>
-        <item name="colorControlHighlight">@android:color/white</item>
-    </style>
-
-
-    <style name="TextAppearance.FontPath" parent="android:TextAppearance">
-        <item name="fontPath">fonts/Roboto-Italic.ttf</item>
-    </style>
-
-    <style name="SimpleStyle">
-        <item name="fontPath">fonts/Roboto-Italic.ttf</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Styles for components -->
+
+    <style name="NoInternetConnectionMessage">
+        <item name="android:layout_height">@dimen/offline_message_height</item>
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:text">@string/offline_message</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/offline_message_text_size</item>
+    </style>
+
+
+    <!-- Text Appearances -->
+    <style name="TextAppearance.Italic" parent="android:TextAppearance">
+        <item name="fontPath">fonts/Roboto-Italic.ttf</item>
+    </style>
+
+    <style name="TextAppearance.Medium" parent="android:TextAppearance">
+        <item name="fontPath">fonts/Roboto-Medium.ttf</item>
+    </style>
 
 </resources>

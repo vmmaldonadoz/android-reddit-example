@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.thirdmono.reddit.R;
 import com.thirdmono.reddit.RedditApplication;
 import com.thirdmono.reddit.presentation.BaseActivity;
-import com.thirdmono.reddit.presentation.list.MainActivity;
+import com.thirdmono.reddit.presentation.list.view.ListActivity;
 import com.thirdmono.reddit.presentation.splash.SplashContract;
 
 import javax.inject.Inject;
@@ -30,7 +30,7 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
 
     @Override
     public void gotoListActivity() {
-        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        startActivity(new Intent(SplashActivity.this, ListActivity.class));
         finish();
     }
 

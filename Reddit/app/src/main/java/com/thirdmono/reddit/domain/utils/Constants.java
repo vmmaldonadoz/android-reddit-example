@@ -8,9 +8,13 @@ package com.thirdmono.reddit.domain.utils;
  */
 public class Constants {
 
-    public final static String API_URL = "https://www.reddit.com/reddits.json";
+    public final static String API_URL = "https://www.reddit.com/";
     public final static String NEXT_PAGE_KEY = "NEXT_PAGE_KEY";
-    public static final String APP_SELECTED_KEY = "APP_SELECTED_KEY";
-    private final static int QUERY_LIMIT = 10;
-    public final static String QUERY = "?after={" + NEXT_PAGE_KEY + "}&limit=" + QUERY_LIMIT;
+    public static final String REDDIT_SELECTED_KEY = "REDDIT_SELECTED_KEY";
+    public final static int DEFAULT_LIMIT = 10;
+    public final static String QUERY_REDDITS = "reddits.json";
+    public final static String QUERY_PAGINATE_AFTER = "after";
+    public final static String QUERY_LIMIT = "limit";
+
+//    public final static String QUERY_REDDITS = "reddits.json?after={" + NEXT_PAGE_KEY + "}&limit=" + QUERY_LIMIT;
 }

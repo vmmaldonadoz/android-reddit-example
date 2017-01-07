@@ -1,6 +1,6 @@
 package com.thirdmono.reddit.domain.di;
 
-import com.thirdmono.reddit.presentation.list.MainActivity;
+import com.thirdmono.reddit.presentation.list.view.ListActivity;
 import com.thirdmono.reddit.presentation.details.DetailsActivity;
 import com.thirdmono.reddit.presentation.splash.view.SplashActivity;
 
@@ -11,7 +11,7 @@ import dagger.Component;
 @Singleton
 @Component(modules = {AppModule.class})
 public interface AppComponent {
-    void inject(MainActivity target);
+    void inject(ListActivity target);
 
     void inject(SplashActivity target);
 
