@@ -72,6 +72,9 @@
         <activity
             android:name=".presentation.details.DetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="55a0add5bf236764d7704355d82c5a04374fc48f" />
     </application>
 
 </manifest>

@@ -53,13 +53,15 @@ public class ItemAppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         final Thing thing = items.get(position);
         final SubReddit data = thing.getData();
 
-        final String image = thing.getData().getHeaderImg();
-        Picasso.with(context)
-                .load(image)
-                .into(viewHolderBody.itemIcon);
+        final String image = thing.getData().getIconImg();
+        if (image != null && !image.trim().isEmpty()) {
+            Picasso.with(context)
+                    .load(image)
+                    .into(viewHolderBody.itemIcon);
+        }
 
-        viewHolderBody.itemTitle.setText(data.getName());
-        viewHolderBody.itemArtist.setText(data.getSubmitText());
+        viewHolderBody.itemTitle.setText(data.getCreated() + " && " + data.getId() + " && " + data.getName());
+        viewHolderBody.itemArtist.setText(data.getDisplayName());
         viewHolderBody.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +73,17 @@ public class ItemAppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    public void clear() {
+        items.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items
+    public void addAll(List<Thing> list) {
+        items.addAll(list);
+        notifyDataSetChanged();
     }
 
     public interface OnItemClickListener {

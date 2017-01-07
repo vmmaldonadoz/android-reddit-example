@@ -3,6 +3,8 @@ package com.thirdmono.reddit.data.logger;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
+
 import timber.log.Timber;
 
 /**
@@ -23,15 +25,15 @@ public class LoggerTree extends Timber.Tree {
             return;
         }
 
-//        Crashlytics.setInt(CRASHLYTICS_KEY_PRIORITY, priority);
-//        Crashlytics.setString(CRASHLYTICS_KEY_TAG, tag);
-//        Crashlytics.setString(CRASHLYTICS_KEY_MESSAGE, message);
-//
-//        if (throwable == null) {
-//            Crashlytics.log(message);
-//        } else {
-//            Crashlytics.logException(throwable);
-//        }
+        Crashlytics.setInt(CRASHLYTICS_KEY_PRIORITY, priority);
+        Crashlytics.setString(CRASHLYTICS_KEY_TAG, tag);
+        Crashlytics.setString(CRASHLYTICS_KEY_MESSAGE, message);
+
+        if (throwable == null) {
+            Crashlytics.log(message);
+        } else {
+            Crashlytics.logException(throwable);
+        }
 
     }
 }

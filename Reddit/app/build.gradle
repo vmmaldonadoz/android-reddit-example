@@ -1,4 +1,19 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 apply plugin: 'android-apt'
 
 android {
@@ -46,6 +61,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    testCompile 'junit:junit:4.12'
 
     /* Android Support libraries */
     compile "com.android.support:appcompat-v7:$supportLibraryVersion"
@@ -89,6 +105,8 @@ dependencies {
     /* Calligraphy */
     compile "uk.co.chrisjenx:calligraphy:$calligraphyVersion"
 
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta1'
-    testCompile 'junit:junit:4.12'
+    /* Production logger & Crash reporting - Crashlytics */
+    compile("com.crashlytics.sdk.android:crashlytics:$crashlyticsVersion@aar") {
+        transitive = true;
+    }
 }

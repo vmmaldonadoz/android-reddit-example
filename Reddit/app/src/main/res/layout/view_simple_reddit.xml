@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,13 +10,11 @@
         android:layout_height="@dimen/item_reddit_card_height"
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/item_reddit_margin_vertical"
-        android:layout_marginLeft="@dimen/item_reddit_margin_horizontal"
-        android:layout_marginRight="@dimen/item_reddit_margin_horizontal"
         android:layout_marginTop="@dimen/item_reddit_margin_vertical"
         android:foreground="?android:attr/selectableItemBackground"
         card_view:cardBackgroundColor="@color/white"
-        card_view:cardCornerRadius="@dimen/item_reddit_card_corner_radius"
-        card_view:cardUseCompatPadding="true"
+        card_view:cardUseCompatPadding="false"
+        card_view:cardCornerRadius="0dp"
         card_view:contentPadding="@dimen/item_reddit_card_padding">
 
         <RelativeLayout
@@ -62,24 +60,7 @@
 
             </LinearLayout>
 
-
-            <TextView
-                android:id="@+id/item_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="@dimen/nsfw_text_margin"
-                android:layout_marginRight="@dimen/nsfw_text_margin"
-                android:maxLines="1"
-                android:text="@string/free_text"
-                android:textAllCaps="true"
-                android:textColor="@color/primary"
-                android:textSize="@dimen/free_text_size" />
-
-
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 
-</LinearLayout>
+</RelativeLayout>

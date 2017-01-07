@@ -10,6 +10,7 @@ import android.support.annotation.StringRes;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -44,6 +45,9 @@ public class ListActivity extends BaseActivity implements ListContract.View, Ite
     @BindView(R.id.offline_message)
     TextView offlineMessage;
 
+    @BindView(R.id.swipeContainer)
+    SwipeRefreshLayout swipeContainer;
+
     @BindView(R.id.recycler_with_reddits)
     RecyclerView recyclerViewWithApps;
 
@@ -61,6 +65,7 @@ public class ListActivity extends BaseActivity implements ListContract.View, Ite
 
         setupToolbar();
         setupRecyclerViewWithReddits();
+        setupSwipeRefreshLayout();
 
         presenter.setView(this);
         presenter.getRedditsAfter(null);
@@ -80,6 +85,18 @@ public class ListActivity extends BaseActivity implements ListContract.View, Ite
         redditsAdapter = new ItemAppAdapter(new ArrayList<Thing>(), this, this);
         recyclerViewWithApps.setAdapter(redditsAdapter);
         recyclerViewWithApps.setItemAnimator(new DefaultItemAnimator());
+    }
+
+    private void setupSwipeRefreshLayout() {
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.getRedditsAfter(null);
+            }
+        });
+        swipeContainer.setColorSchemeResources(
+                R.color.primary,
+                R.color.accent);
     }
 
     private void setupToolbar() {
@@ -113,8 +130,14 @@ public class ListActivity extends BaseActivity implements ListContract.View, Ite
 
     @Override
     public void updateListOfReddits(List<Thing> listOfReddits) {
+        redditsAdapter.clear();
         redditsAdapter.setItems(listOfReddits);
         hideConnectionMessage();
+        hideSwipeRefreshing();
+    }
+
+    private void hideSwipeRefreshing() {
+        swipeContainer.setRefreshing(false);
     }
 
     private void hideConnectionMessage() {
