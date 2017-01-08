@@ -6,11 +6,13 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
-import android.text.method.LinkMovementMethod;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mukesh.MarkdownView;
 import com.squareup.picasso.Picasso;
 import com.thirdmono.reddit.R;
 import com.thirdmono.reddit.data.entity.SubReddit;
@@ -24,7 +26,6 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
-import in.uncod.android.bypass.Bypass;
 import timber.log.Timber;
 
 public class DetailsActivity extends BaseActivity {
@@ -54,11 +55,22 @@ public class DetailsActivity extends BaseActivity {
     TextView publicDescription;
 
     @BindView(R.id.subreddit_full_description)
-    TextView fullDescription;
+    MarkdownView fullDescription;
 
     String title;
     Thing thing;
     SubReddit subReddit;
+
+    @SuppressWarnings("deprecation")
+    public static Spanned fromHtml(String html) {
+        Spanned result;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            result = Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY);
+        } else {
+            result = Html.fromHtml(html);
+        }
+        return result;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +95,7 @@ public class DetailsActivity extends BaseActivity {
             thing = (getIntent() != null && getIntent().getStringExtra(Constants.REDDIT_SELECTED_KEY) != null) ?
                     Utils.valueOf(getIntent().getStringExtra(Constants.REDDIT_SELECTED_KEY)) :
                     null;
-        }else {
+        } else {
             thing = Utils.valueOf(savedInstanceState.getString(Constants.REDDIT_SELECTED_KEY, ""));
             subReddit = thing.getData();
         }
@@ -91,7 +103,7 @@ public class DetailsActivity extends BaseActivity {
             subReddit = thing.getData();
             setupDetailHeader();
             setupDetailBody();
-        }else {
+        } else {
             Timber.e("showDetail(): Error retrieving the data for the detailed view.");
         }
     }
@@ -124,11 +136,9 @@ public class DetailsActivity extends BaseActivity {
     }
 
     private void setupDetailBody() {
-        Bypass bypass = new Bypass();
-
         publicDescription.setText(subReddit.getPublicDescription());
-        fullDescription.setText(bypass.markdownToSpannable(subReddit.getDescription()));
-        fullDescription.setMovementMethod(LinkMovementMethod.getInstance());
+        fullDescription.setMarkDownText(subReddit.getDescription());
+        fullDescription.setOpenUrlInBrowser(true);
     }
 
     private void setupToolbar() {
