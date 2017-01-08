@@ -6,6 +6,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -127,6 +128,7 @@ public class DetailsActivity extends BaseActivity {
 
         publicDescription.setText(subReddit.getPublicDescription());
         fullDescription.setText(bypass.markdownToSpannable(subReddit.getDescription()));
+        fullDescription.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     private void setupToolbar() {
