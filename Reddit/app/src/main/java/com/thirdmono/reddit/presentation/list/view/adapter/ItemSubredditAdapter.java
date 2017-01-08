@@ -20,18 +20,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * {@link android.support.v7.widget.RecyclerView.Adapter} for the Apps list.
+ * {@link android.support.v7.widget.RecyclerView.Adapter} for the subreddit list.
  *
  * @author <a href="mailto:vmmzn20@gmail.com">Victor Maldonado</a>
  * @since 1.0
  */
-public class ItemAppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ItemSubredditAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<Thing> items;
     private Context context;
     private OnItemClickListener clickListener;
 
-    public ItemAppAdapter(List<Thing> list, OnItemClickListener listener, Context context) {
+    public ItemSubredditAdapter(List<Thing> list, OnItemClickListener listener, Context context) {
         this.items = list;
         this.clickListener = listener;
         this.context = context;
@@ -85,6 +85,10 @@ public class ItemAppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void addAll(List<Thing> list) {
         items.addAll(list);
         notifyDataSetChanged();
+    }
+
+    public List<Thing> getItems() {
+        return items;
     }
 
     public interface OnItemClickListener {

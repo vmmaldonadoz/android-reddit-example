@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.google.gson.Gson;
+import com.thirdmono.reddit.data.entity.Listing;
 import com.thirdmono.reddit.data.entity.Thing;
 
 /**
@@ -31,6 +32,11 @@ public class Utils {
     public static Thing valueOf(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, Thing.class);
+    }
+
+    public static Listing valueOfListing(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, Listing.class);
     }
 
 }

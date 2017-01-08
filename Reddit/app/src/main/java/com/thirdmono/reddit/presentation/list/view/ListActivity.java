@@ -23,7 +23,7 @@ import com.thirdmono.reddit.RedditApplication;
 import com.thirdmono.reddit.data.entity.Thing;
 import com.thirdmono.reddit.presentation.BaseActivity;
 import com.thirdmono.reddit.presentation.list.ListContract;
-import com.thirdmono.reddit.presentation.list.view.adapter.ItemAppAdapter;
+import com.thirdmono.reddit.presentation.list.view.adapter.ItemSubredditAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class ListActivity extends BaseActivity implements ListContract.View, ItemAppAdapter.OnItemClickListener {
+public class ListActivity extends BaseActivity implements ListContract.View, ItemSubredditAdapter.OnItemClickListener {
 
     @BindView(R.id.coordinator)
     CoordinatorLayout coordinatorLayout;
@@ -53,7 +53,7 @@ public class ListActivity extends BaseActivity implements ListContract.View, Ite
 
     @Inject
     ListContract.Presenter presenter;
-    private ItemAppAdapter redditsAdapter;
+    private ItemSubredditAdapter redditsAdapter;
     private Snackbar snackbar;
 
     @Override
@@ -68,8 +68,8 @@ public class ListActivity extends BaseActivity implements ListContract.View, Ite
         setupSwipeRefreshLayout();
 
         presenter.setView(this);
-        presenter.getRedditsAfter(null);
         presenter.setupConnectionBroadcastReceiver();
+        presenter.getRedditsAfter(null);
     }
 
     private void setupDependencyInjection() {
@@ -82,7 +82,7 @@ public class ListActivity extends BaseActivity implements ListContract.View, Ite
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerViewWithApps.setLayoutManager(linearLayoutManager);
 
-        redditsAdapter = new ItemAppAdapter(new ArrayList<Thing>(), this, this);
+        redditsAdapter = new ItemSubredditAdapter(new ArrayList<Thing>(), this, this);
         recyclerViewWithApps.setAdapter(redditsAdapter);
         recyclerViewWithApps.setItemAnimator(new DefaultItemAnimator());
     }
