@@ -2,6 +2,10 @@
 
 Ejemplo de una aplicación Android consumiendo el API de reddit (https://www.reddit.com/reddits.json).
 
+# Disponible en Play Store
+
+[<img src="google-play-badge.png" data-canonical-src="google-play-badge.png" width="200"  />](https://play.google.com/store/apps/details?id=com.thirdmono.reddit)
+
 # Documentación
 
 * [Mockups](./Mockups/Reddit.pdf)
