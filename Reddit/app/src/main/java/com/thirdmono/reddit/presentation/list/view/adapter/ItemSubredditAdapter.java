@@ -37,12 +37,6 @@ public class ItemSubredditAdapter extends RecyclerView.Adapter<RecyclerView.View
         this.context = context;
     }
 
-    public void setItems(List<Thing> items) {
-        this.items.clear();
-        this.items.addAll(items);
-        notifyDataSetChanged();
-    }
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolderItem(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_subreddit, parent, false));
@@ -60,9 +54,13 @@ public class ItemSubredditAdapter extends RecyclerView.Adapter<RecyclerView.View
                     .load(image)
                     .transform(new CircleTransformation())
                     .into(viewHolderBody.itemIcon);
+        } else {
+            Picasso.with(context)
+                    .load(R.mipmap.ic_launcher_round)
+                    .into(viewHolderBody.itemIcon);
         }
 
-        viewHolderBody.itemTitle.setText(data.getUrl()+" : "+data.getDisplayName());
+        viewHolderBody.itemTitle.setText(data.getUrl() + " : " + data.getDisplayName());
         viewHolderBody.itemDescription.setText(data.getPublicDescription());
         viewHolderBody.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +87,12 @@ public class ItemSubredditAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     public List<Thing> getItems() {
         return items;
+    }
+
+    public void setItems(List<Thing> items) {
+        this.items.clear();
+        this.items.addAll(items);
+        notifyDataSetChanged();
     }
 
     public interface OnItemClickListener {

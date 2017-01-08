@@ -18,6 +18,8 @@ import com.thirdmono.reddit.domain.utils.Constants;
 import com.thirdmono.reddit.domain.utils.Utils;
 import com.thirdmono.reddit.presentation.BaseActivity;
 
+import java.util.Locale;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -71,9 +73,7 @@ public class DetailsActivity extends BaseActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        // Make sure to call the super method so that the states of our views are saved
         super.onSaveInstanceState(outState);
-        // Save our own state now
         outState.putString(Constants.REDDIT_SELECTED_KEY, Utils.toString(thing));
     }
 
@@ -98,7 +98,7 @@ public class DetailsActivity extends BaseActivity {
     private void setupDetailHeader() {
         title = subReddit.getDisplayName();
         name.setText(String.format("r/%s", subReddit.getDisplayName()));
-        subscribers.setText(String.format("%d Subscribers", subReddit.getSubscribers()));
+        subscribers.setText(String.format(Locale.getDefault(), "%d Subscribers", subReddit.getSubscribers()));
 
         if (subReddit.getBannerImg() != null && !subReddit.getBannerImg().isEmpty()) {
             Picasso.with(this)
