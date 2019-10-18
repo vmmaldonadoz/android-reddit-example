@@ -57,9 +57,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".presentation.list.view.ListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".presentation.splash.view.SplashActivity"
             android:theme="@style/SplashTheme">
