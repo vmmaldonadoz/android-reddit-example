@@ -9,7 +9,6 @@ buildscript {
 }
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
-//apply plugin: 'android-apt'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -41,8 +40,8 @@ android {
 }
 
 ext {
-    supportLibraryVersion = '26.0.1'
-    multidexLibraryVersion = '1.0.1'
+    supportLibraryVersion = '28.0.0'
+    multidexLibraryVersion = '1.0.3'
     expressoCoreVersion = '2.2.2'
     jUnitVersion = '4.12'
     reboundVersion = '0.3.8'
