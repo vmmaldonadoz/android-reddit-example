@@ -8,11 +8,14 @@ buildscript {
     }
 }
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'io.fabric'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
     maven { url "https://jitpack.io" }
+    mavenCentral()
 }
 
 
@@ -39,86 +42,63 @@ android {
     }
 }
 
-ext {
-    supportLibraryVersion = '28.0.0'
-    multidexLibraryVersion = '1.0.3'
-    expressoCoreVersion = '2.2.2'
-    jUnitVersion = '4.12'
-    reboundVersion = '0.3.8'
-    butterKnifeVersion = '8.4.0'
-    leakCanaryVersion = '1.5'
-    crashlyticsVersion = '2.6.5'
-    timberVersion = '4.7.1'
-    retrofitVersion = '2.1.0'
-    okhttpVersion = '3.4.1'
-    gsonVersion = '2.7'
-    daggerVersion = '2.7'
-    picassoVersion = '2.5.2'
-    circleImageViewVersion = '2.1.0'
-    javaAnnotationVersion = '1.0'
-    calligraphyVersion = '2.2.0'
-}
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    /* Testing */
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testImplementation 'junit:junit:4.12'
+    /* Kotlin */
+    implementation Libs.kotlin
 
     /* Android Support libraries */
-    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
-    implementation "com.android.support:support-v4:$supportLibraryVersion"
-    implementation "com.android.support:recyclerview-v7:$supportLibraryVersion"
-    implementation "com.android.support:cardview-v7:$supportLibraryVersion"
-    implementation "com.android.support:design:$supportLibraryVersion"
+    implementation Libs.supportAppcompatV7
+    implementation Libs.supportAppcompatV4
+    implementation Libs.supportRecyclerView
+    implementation Libs.supportCardView
+    implementation Libs.supportDesign
 
     /* Multidex */
-    implementation "com.android.support:multidex:$multidexLibraryVersion"
+    implementation Libs.multidex
 
     /* Logger - Timber */
-    implementation "com.jakewharton.timber:timber:$timberVersion"
+    implementation Libs.timber
 
     /* View binding - Butterknife */
-    implementation "com.jakewharton:butterknife:$butterKnifeVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
+    annotationProcessor Libs.butterknife
+    annotationProcessor Libs.butterknifeCompiler
 
     /* Memory leak detection - LeakCanary */
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
-    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
-    testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+    debugImplementation Libs.leakCannary
+    testImplementation Libs.leakCannaryNoOp
+    releaseImplementation Libs.leakCannaryNoOp
 
     /* REST Interactions - Retrofit */
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
-    implementation "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
+    implementation Libs.retrofit
+    implementation Libs.retrofitRxJava
+    implementation Libs.okhttpLoggingInterceptor
 
     /* JSON Parsing - Gson */
-    implementation "com.google.code.gson:gson:$gsonVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation Libs.gson
+    implementation Libs.retrofitGson
 
     /* Dependency Injection - Dagger */
-    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    compileOnly "javax.annotation:jsr250-api:$javaAnnotationVersion"
+    implementation Libs.dagger
+    annotationProcessor Libs.daggerCompiler
+    compileOnly Libs.javaxAnnotation
 
     /* Image loader - Picasso */
-    implementation "com.squareup.picasso:picasso:$picassoVersion"
+    implementation Libs.picasso
 
     /* Circle ImageView - CircleImageView */
-    implementation "de.hdodenhof:circleimageview:$circleImageViewVersion"
+    implementation Libs.circleImageView
 
     /* Calligraphy */
-    implementation "uk.co.chrisjenx:calligraphy:$calligraphyVersion"
+    implementation Libs.calligraphy
 
     /* Production logger & Crash reporting - Crashlytics */
-    implementation("com.crashlytics.sdk.android:crashlytics:$crashlyticsVersion@aar") {
-        transitive = true;
+    implementation(Libs.crashlytics) {
+        transitive = true
     }
 
     /* Markdown view*/
-    implementation 'com.github.mukeshsolanki:MarkdownView-Android:1.0.3'
+    implementation Libs.markdownView
 
 }
