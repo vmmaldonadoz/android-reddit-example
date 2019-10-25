@@ -62,7 +62,7 @@ dependencies {
     implementation Libs.timber
 
     /* View binding - Butterknife */
-    annotationProcessor Libs.butterknife
+    implementation Libs.butterknife
     annotationProcessor Libs.butterknifeCompiler
 
     /* Memory leak detection - LeakCanary */
