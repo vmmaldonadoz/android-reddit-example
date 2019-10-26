@@ -7,20 +7,18 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
 import com.thirdmono.reddit.R;
 import com.thirdmono.reddit.RedditApplication;
 import com.thirdmono.reddit.data.entity.Thing;
+import com.thirdmono.reddit.databinding.ActivityListBinding;
 import com.thirdmono.reddit.presentation.BaseActivity;
 import com.thirdmono.reddit.presentation.list.ListContract;
 import com.thirdmono.reddit.presentation.list.view.adapter.ItemSubredditAdapter;
@@ -30,37 +28,21 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ListActivity extends BaseActivity implements ListContract.View, ItemSubredditAdapter.OnItemClickListener {
 
-    @BindView(R.id.coordinator)
-    CoordinatorLayout coordinatorLayout;
-
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
-    @BindView(R.id.offline_message)
-    TextView offlineMessage;
-
-    @BindView(R.id.swipeContainer)
-    SwipeRefreshLayout swipeContainer;
-
-    @BindView(R.id.recycler_with_reddits)
-    RecyclerView recyclerViewWithApps;
-
     @Inject
     ListContract.Presenter presenter;
+    ActivityListBinding binding;
     private ItemSubredditAdapter redditsAdapter;
     private Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
-        ButterKnife.bind(this);
+        binding = ActivityListBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setupDependencyInjection();
 
         setupToolbar();
@@ -80,29 +62,29 @@ public class ListActivity extends BaseActivity implements ListContract.View, Ite
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerViewWithApps.setLayoutManager(linearLayoutManager);
+        binding.recyclerView.setLayoutManager(linearLayoutManager);
 
         redditsAdapter = new ItemSubredditAdapter(new ArrayList<Thing>(), this, this);
-        recyclerViewWithApps.setAdapter(redditsAdapter);
-        recyclerViewWithApps.setItemAnimator(new DefaultItemAnimator());
+        binding.recyclerView.setAdapter(redditsAdapter);
+        binding.recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
     private void setupSwipeRefreshLayout() {
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        binding.swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 presenter.getRedditsAfter(null);
             }
         });
-        swipeContainer.setColorSchemeResources(
+        binding.swipeContainer.setColorSchemeResources(
                 R.color.primary,
                 R.color.accent);
     }
 
     private void setupToolbar() {
-        setSupportActionBar(toolbar);
-        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.primary_text));
-        toolbar.setTitle(getTitle());
+        setSupportActionBar(binding.toolbar);
+        binding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.primary_text));
+        binding.toolbar.setTitle(getTitle());
     }
 
     @Override
@@ -138,7 +120,7 @@ public class ListActivity extends BaseActivity implements ListContract.View, Ite
     }
 
     private void hideSwipeRefreshing() {
-        swipeContainer.setRefreshing(false);
+        binding.swipeContainer.setRefreshing(false);
     }
 
     private void hideConnectionMessage() {
@@ -149,12 +131,12 @@ public class ListActivity extends BaseActivity implements ListContract.View, Ite
 
     @Override
     public void hideNoConnectionMessage() {
-        offlineMessage.setVisibility(View.GONE);
+        binding.offlineMessage.setVisibility(View.GONE);
     }
 
     @Override
     public void showNoConnectionMessage() {
-        offlineMessage.setVisibility(View.VISIBLE);
+        binding.offlineMessage.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -185,7 +167,7 @@ public class ListActivity extends BaseActivity implements ListContract.View, Ite
     }
 
     private void showRetrySnackbar(@StringRes int message) {
-        snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG)
+        snackbar = Snackbar.make(binding.coordinator, message, Snackbar.LENGTH_LONG)
                 .setAction(R.string.retry, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -196,7 +178,7 @@ public class ListActivity extends BaseActivity implements ListContract.View, Ite
         snackbar.setDuration(Snackbar.LENGTH_INDEFINITE);
         View snackbarView = snackbar.getView();
         snackbarView.setBackgroundColor(ContextCompat.getColor(this, R.color.primary));
-        TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+        TextView textView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
         textView.setTextColor(Color.WHITE);
         snackbar.show();
     }
