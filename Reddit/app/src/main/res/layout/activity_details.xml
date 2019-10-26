@@ -44,24 +44,24 @@
                     app:civ_border_width="2dp" />
 
                 <TextView
-                    android:text="@string/subreddit_name_placeholder"
                     android:id="@+id/subreddit_name"
-                    android:layout_below="@+id/subreddit_icon"
-                    android:layout_marginTop="8dp"
-                    android:layout_centerHorizontal="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/subreddit_icon"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/subreddit_name_placeholder"
                     android:textAppearance="@style/TextAppearance.Medium"
                     android:textSize="@dimen/subreddit_name_size" />
 
                 <TextView
-                    android:text="@string/subreddit_subscribers_placeholder"
                     android:id="@+id/subreddit_subscribers"
-                    android:layout_below="@+id/subreddit_name"
-                    android:layout_marginTop="8dp"
-                    android:layout_centerHorizontal="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/subreddit_name"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/subreddit_subscribers_placeholder"
                     android:textAppearance="@style/TextAppearance.Italic"
                     android:textSize="@dimen/subreddit_subscribers_size" />
 
@@ -78,6 +78,8 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_details" />
+    <include
+        android:id="@+id/content"
+        layout="@layout/content_details" />
 
 </android.support.design.widget.CoordinatorLayout>
