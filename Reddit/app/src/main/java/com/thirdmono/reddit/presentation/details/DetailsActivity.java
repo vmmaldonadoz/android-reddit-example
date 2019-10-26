@@ -90,9 +90,9 @@ public class DetailsActivity extends BaseActivity {
     }
 
     private void setupDetailBody() {
-        binding.content.subredditPublicDescription.setText(subReddit.getPublicDescription());
-        binding.content.subredditFullDescription.setMarkDownText(subReddit.getDescription());
-        binding.content.subredditFullDescription.setOpenUrlInBrowser(true);
+        binding.subredditPublicDescription.setText(subReddit.getPublicDescription());
+        binding.subredditFullDescription.setMarkDownText(subReddit.getDescription());
+        binding.subredditFullDescription.setOpenUrlInBrowser(true);
     }
 
     private void setupToolbar() {
