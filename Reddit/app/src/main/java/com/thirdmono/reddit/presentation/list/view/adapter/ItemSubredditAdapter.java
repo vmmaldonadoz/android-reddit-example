@@ -1,6 +1,7 @@
 package com.thirdmono.reddit.presentation.list.view.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +36,8 @@ public class ItemSubredditAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolderItem(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_subreddit, parent, false));
+        ViewSubredditBinding binding = ViewSubredditBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new ViewHolderItem(binding);
     }
 
     @Override
@@ -98,9 +100,9 @@ public class ItemSubredditAdapter extends RecyclerView.Adapter<RecyclerView.View
     static class ViewHolderItem extends RecyclerView.ViewHolder {
         ViewSubredditBinding binding;
 
-        ViewHolderItem(View v) {
-            super(v);
-            binding = ViewSubredditBinding.bind(v);
+        ViewHolderItem(@NonNull ViewSubredditBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 }
