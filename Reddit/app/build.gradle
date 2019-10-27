@@ -64,10 +64,6 @@ dependencies {
     /* Logger - Timber */
     implementation Libs.timber
 
-    /* View binding - Butterknife */
-    implementation Libs.butterknife
-    annotationProcessor Libs.butterknifeCompiler
-
     /* Memory leak detection - LeakCanary */
     debugImplementation Libs.leakCannary
     testImplementation Libs.leakCannaryNoOp
