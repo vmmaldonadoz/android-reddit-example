@@ -5,19 +5,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.thirdmono.reddit.R;
 import com.thirdmono.reddit.data.entity.SubReddit;
 import com.thirdmono.reddit.data.entity.Thing;
+import com.thirdmono.reddit.databinding.ViewSubredditBinding;
 import com.thirdmono.reddit.domain.utils.CircleTransformation;
 
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * {@link android.support.v7.widget.RecyclerView.Adapter} for the subreddit list.
@@ -53,15 +49,15 @@ public class ItemSubredditAdapter extends RecyclerView.Adapter<RecyclerView.View
             Picasso.with(context)
                     .load(image)
                     .transform(new CircleTransformation())
-                    .into(viewHolderBody.itemIcon);
+                    .into(viewHolderBody.binding.itemIcon);
         } else {
             Picasso.with(context)
                     .load(R.mipmap.ic_launcher_round)
-                    .into(viewHolderBody.itemIcon);
+                    .into(viewHolderBody.binding.itemIcon);
         }
 
-        viewHolderBody.itemTitle.setText(data.getUrl() + " : " + data.getDisplayName());
-        viewHolderBody.itemDescription.setText(data.getPublicDescription());
+        viewHolderBody.binding.itemName.setText(data.getUrl() + " : " + data.getDisplayName());
+        viewHolderBody.binding.itemDescription.setText(data.getPublicDescription());
         viewHolderBody.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,16 +96,11 @@ public class ItemSubredditAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     static class ViewHolderItem extends RecyclerView.ViewHolder {
-        @BindView(R.id.item_icon)
-        ImageView itemIcon;
-        @BindView(R.id.item_name)
-        TextView itemTitle;
-        @BindView(R.id.item_description)
-        TextView itemDescription;
+        ViewSubredditBinding binding;
 
         ViewHolderItem(View v) {
             super(v);
-            ButterKnife.bind(this, v);
+            binding = ViewSubredditBinding.bind(v);
         }
     }
 }

@@ -11,8 +11,6 @@ import com.thirdmono.reddit.presentation.splash.SplashContract;
 
 import javax.inject.Inject;
 
-import butterknife.ButterKnife;
-
 public class SplashActivity extends BaseActivity implements SplashContract.View {
 
     @Inject
@@ -21,7 +19,6 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
         setupDependencyInjection();
         setContentView(R.layout.activity_splash);
         presenter.setView(this);
