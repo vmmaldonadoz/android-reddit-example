@@ -27,7 +27,7 @@ import javax.inject.Inject
 class ListActivity : BaseActivity(), ListContract.View, ItemSubredditAdapter.OnItemClickListener {
 
     @Inject
-    internal var presenter: ListContract.Presenter? = null
+    lateinit var presenter: ListContract.Presenter
     private lateinit var binding: ActivityListBinding
 
     private lateinit var redditsAdapter: ItemSubredditAdapter

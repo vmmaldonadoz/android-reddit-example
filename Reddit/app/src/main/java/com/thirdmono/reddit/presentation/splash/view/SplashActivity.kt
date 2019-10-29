@@ -30,6 +30,6 @@ class SplashActivity : BaseActivity(), SplashContract.View {
     }
 
     private fun setupDependencyInjection() {
-        (application as RedditApplication).appComponent.inject(this)
+        (application as RedditApplication).appComponent?.inject(this)
     }
 }
