@@ -12,6 +12,6 @@ class SplashPresenter : SplashContract.Presenter {
     }
 
     override fun setupTransition() {
-        view!!.gotoListActivity()
+        view?.gotoListActivity()
     }
 }
