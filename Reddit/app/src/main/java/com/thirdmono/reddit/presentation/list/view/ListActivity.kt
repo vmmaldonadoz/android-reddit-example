@@ -43,9 +43,9 @@ class ListActivity : BaseActivity(), ListContract.View, ItemSubredditAdapter.OnI
         setupRecyclerViewWithReddits()
         setupSwipeRefreshLayout()
 
-        presenter?.setView(this)
-        presenter?.setupConnectionBroadcastReceiver()
-        presenter?.getReddits()
+        presenter.setView(this)
+        presenter.setupConnectionBroadcastReceiver()
+        presenter.getReddits()
     }
 
     private fun setupDependencyInjection() {
@@ -64,7 +64,7 @@ class ListActivity : BaseActivity(), ListContract.View, ItemSubredditAdapter.OnI
     }
 
     private fun setupSwipeRefreshLayout() {
-        binding.swipeContainer.setOnRefreshListener { presenter?.getReddits() }
+        binding.swipeContainer.setOnRefreshListener { presenter.getReddits() }
         binding.swipeContainer.setColorSchemeResources(
                 R.color.primary,
                 R.color.accent)
@@ -78,16 +78,16 @@ class ListActivity : BaseActivity(), ListContract.View, ItemSubredditAdapter.OnI
 
     override fun onResume() {
         super.onResume()
-        presenter?.resume()
+        presenter.resume()
     }
 
     override fun onPause() {
         super.onPause()
-        presenter?.pause()
+        presenter.pause()
     }
 
     override fun onDestroy() {
-        presenter?.destroy()
+        presenter.destroy()
         snackbar = null
         super.onDestroy()
     }
@@ -141,7 +141,7 @@ class ListActivity : BaseActivity(), ListContract.View, ItemSubredditAdapter.OnI
 
     private fun showRetrySnackbar(@StringRes message: Int) {
         snackbar = Snackbar.make(binding.coordinator, message, Snackbar.LENGTH_LONG)
-                .setAction(R.string.retry) { presenter?.getReddits() }
+                .setAction(R.string.retry) { presenter.getReddits() }
         snackbar?.setActionTextColor(Color.WHITE)
         snackbar?.duration = Snackbar.LENGTH_INDEFINITE
 
@@ -155,6 +155,6 @@ class ListActivity : BaseActivity(), ListContract.View, ItemSubredditAdapter.OnI
     }
 
     override fun onClick(view: View, thing: Thing) {
-        presenter?.onItemClicked(this, thing)
+        presenter.onItemClicked(this, thing)
     }
 }
