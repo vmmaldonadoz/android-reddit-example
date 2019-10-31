@@ -12,3 +12,10 @@ fun <A : Any, B : Any> doIfBothAreNotNull(objectA: A?, objectB: B?, function: (A
         function(a, b)
     }
 }
+
+fun String?.ifNotNullOrBlank(function: (String) -> Unit) {
+    val safeObject = this.orEmpty()
+    if (safeObject.isNotBlank()) {
+        function(safeObject)
+    }
+}
