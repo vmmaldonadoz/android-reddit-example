@@ -16,12 +16,6 @@ import com.thirdmono.reddit.domain.utils.CircleTransformation;
 
 import java.util.List;
 
-/**
- * {@link android.support.v7.widget.RecyclerView.Adapter} for the subreddit list.
- *
- * @author <a href="mailto:vmmzn20@gmail.com">Victor Maldonado</a>
- * @since 1.0
- */
 public class ItemSubredditAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<Thing> items;

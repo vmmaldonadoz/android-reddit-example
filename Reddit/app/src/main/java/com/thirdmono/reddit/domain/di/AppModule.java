@@ -64,7 +64,7 @@ public class AppModule {
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
 
-                if (!Utils.hasNetwork(context)) {
+                if (!Utils.INSTANCE.hasNetwork(context)) {
                     CacheControl cacheControl = new CacheControl.Builder()
                             .maxStale(2, TimeUnit.DAYS)
                             .build();
